@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vault">
+
+	<typeAlias alias="VaultVo" type="egovframework.rte.vo.VaultVo"/>
+	<typeAlias alias="DocDBVo" type="egovframework.rte.vo.D_DocdbVO"/>
+	
+  	<resultMap id="vaultVo" class="VaultVo">
+  		<result property="vaultlNo" column="VAULTLNO" />
+		<result property="vaultlKind" column="VAULTLKIND" />
+		<result property="vaultlLevel" column="VAULTLLEVEL" nullValue="0" />
+		<result property="vaultlName" column="VAULTLNAME" />
+		<result property="vaultlDesc" column="VAULTLDESC" />
+ 		<result property="docdbName" column="DOCDBNAME" />
+		<result property="subdbName" column="SUBDBNAME" />
+		<result property="creator" column="CREATOR" />
+		<result property="created" column="CREATED"/>
+		<result property="storageNo" column="STORAGENO" />
+		<result property="docCount" column="DOCCOUNT" nullValue="0"/>
+		<result property="childCount" column="CHILDCOUNT" nullValue="0" />
+	</resultMap>
+	
+	<resultMap id="vaultVo2" class="VaultVo">
+  		<result property="vaultlNo" column="VAULTLNO" />
+		<result property="vaultlKind" column="VAULTLKIND" />
+		<result property="vaultlLevel" column="VAULTLLEVEL" nullValue="0" />
+		<result property="vaultlName" column="VAULTLNAME" />
+		<result property="vaultlDesc" column="VAULTLDESC" />
+ 		<result property="docdbName" column="DOCDBNAME" />
+		<result property="subdbName" column="SUBDBNAME" />
+		<result property="creator" column="CREATOR" />
+		<result property="created" column="CREATED"/>
+		<result property="storageNo" column="STORAGENO" />
+	</resultMap>
+	
+	<resultMap id="docDBVo" class="DocDBVo">
+				<result property="docno" column="DOCNO" />
+		<result property="doctype" column="DOCTYPE" />
+		<result property="docversion" column="DOCVERSION" nullValue="0"/>
+		<result property="docname" column="DOCNAME" />
+		<result property="docfilename" column="DOCFILENAME" />
+		<result property="docfiletype" column="DOCFILETYPE" />
+		<result property="docfilesize" column="DOCFILESIZE" nullValue="0"/>
+		<result property="docdesc" column="DOCDESC" />
+		<result property="docproadd" column="DOCPROADD" />
+		<result property="docstatus" column="DOCSTATUS" />
+		<result property="docappstatus" column="DOCAPPSTATUS" />
+		<result property="docsetno" column="DOCSETNO" />
+		<result property="doczipfilename" column="DOCZIPFILENAME" />
+		<result property="docgrade" column="DOCGRADE" />
+		<result property="docreturn" column="DOCRETURN" />
+		<result property="doccreated" column="DOCCREATED" />
+		<result property="doccreator" column="DOCCREATOR" />
+		<result property="doccreatorname" column="DOCCREATORNAME" />
+		<result property="doccreatordept" column="DOCCREATORDEPT" />
+		<result property="docupdated" column="DOCUPDATED" />
+		<result property="docupdator" column="DOCUPDATOR" />
+		<result property="docupdflag" column="DOCUPDFLAG" />
+		<result property="docapprid" column="DOCAPPRID" />
+		<result property="docanalyzekind" column="DOCANALYZEKIND" />
+		<result property="docanalyzed" column="DOCANALYZED" />
+		<result property="vaultlno" column="VAULTLNO" />
+		<result property="vldocno" column="VLDOCNO" />
+		<result property="docfacadded" column="DOCFACADDED" />
+		<result property="docopencnt" column="DOCOPENCNT" nullValue="0" />
+		<result property="docanalyzedcnt" column="DOCANALYZEDCNT" nullValue="0"/>
+	</resultMap>
+	
+  	<select id="vaultDAO.getVaultList" resultClass="VaultVo" remapResults="true" resultMap="vaultVo" parameterClass="VaultVo">
+	<![CDATA[
+		SELECT 
+				VAULTLNO,
+				VAULTLKIND,
+				VAULTLLEVEL,
+				VAULTLNAME,
+				VAULTLDESC,
+				DOCDBNAME,
+				SUBDBNAME,
+				CREATOR,
+				CREATED,
+				STORAGENO,
+				DOCCOUNT,
+				(SELECT COUNT(*)-1 FROM D_VAULTLIST B WHERE B.VAULTLNO LIKE SUBSTR(A.VAULTLNO, 1, A.VAULTLLEVEL*5+5)||'%') CHILDCOUNT			
+		FROM 
+			D_VAULTLIST A
+		WHERE
+			VAULTLNO LIKE #vaultlNo#||'%'
+		AND
+			VAULTLLEVEL = #vaultlLevel#
+		ORDER BY VAULTLNO
+	]]>
+	</select>
+	
+<!-- 	<select id="vaultDAO.viewGrid" remapResults="true" resultClass="DocDB1Vo"  resultMap="docDB1Vo" parameterClass="java.lang.String">
+	<![CDATA[
+		SELECT 
+			*
+		FROM 
+			D_DOCDB1
+		WHERE
+			VAULTLNO = #value#
+		ORDER BY DOCNO
+	]]>
+	</select> -->
+	
+	<select id="vaultDAO.viewGrid" remapResults="true" resultClass="DocDBVo"  resultMap="docDBVo" parameterClass="java.util.HashMap">
+	<![CDATA[
+		SELECT * FROM 
+			(SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT, (COUNT(*) OVER())/10 AS PAGENUM FROM 
+			(SELECT X.* FROM D_DOCDB1 X WHERE X.VAULTLNO = #vaultlNo# ) A)
+		WHERE RNUM BETWEEN (#pageNo#-1)*200 + 1 AND (#pageNo#)*200;
+	]]>
+	</select> 
+	
+	<select id="vaultDAO.columList" resultClass="VaultVo" parameterClass="java.util.HashMap" remapResults="true">
+        <![CDATA[
+		    SELECT DISTINCT
+ 				$keyWord$,
+    			(SELECT COUNT(*) FROM D_DOCDB1 WHERE VAULTLNO = #vaultlNo#) DATACOUNT
+    		FROM
+      			D_VAULTLIST
+   	 		WHERE NOT
+    			$keyWord$ = '*'
+  		]]>
+	</select>
+	
+	<select id="vaultDAO.getVaultlInfo" resultMap="vaultVo2" parameterClass="VaultVo">
+    SELECT
+    	VAULTLNO, 
+    	VAULTLNAME,
+    	VAULTLKIND,
+ 		VAULTLDESC,
+ 		VAULTLLEVEL,
+ 		DOCDBNAME,
+ 		SUBDBNAME,
+ 		STORAGENO,
+ 		CREATOR,
+ 		CREATED
+    FROM
+      D_VAULTLIST
+    WHERE
+      VAULTLNO = #vaultlNo#
+	</select>
+	
+	<insert id="vaultDAO.rootCreate" parameterClass="VaultVo" >
+	    INSERT INTO
+   		 	D_VAULTLIST (VAULTLNO, VAULTLKIND, VAULTLLEVEL, VAULTLNAME, VAULTLDESC, DOCDBNAME, SUBDBNAME, CREATOR, CREATED, STORAGENO)
+   		VALUES(#vaultlNo#,#vaultlKind#,#vaultlLevel#,#vaultlName#,#vaultlDesc#,#docdbName#,#subdbName#,#creator#,
+   				TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'),#storageNo#)
+	</insert>
+	
+	<update id="vaultDAO.vaultUpdate" parameterClass="VaultVo">
+	<![CDATA[
+    UPDATE
+    	D_VAULTLIST
+    SET
+    	VAULTLNAME = #vaultlName#,
+ 		VAULTLDESC = #vaultlDesc#,
+ 		DOCDBNAME = #docdbName#,
+ 		SUBDBNAME = #subdbName#,
+ 		STORAGENO = #storageNo#
+    WHERE
+      VAULTLNO = #vaultlNo#
+	]]>
+	</update>
+	
+	<delete id="vaultDAO.vaultDelete" parameterClass="VaultVo">
+	<![CDATA[
+    DELETE
+    	D_VAULTLIST
+    WHERE
+      VAULTLNO LIKE #vaultlNo#||'%'
+	]]>
+	</delete>
+	
+	<update id="vaultDAO.rollBack">
+	<![CDATA[
+	INSERT INTO D_VAULTLIST
+	SELECT *
+	FROM D_VAULTLIST
+	AS OF TIMESTAMP(SYSTIMESTAMP - INTERVAL '15' MINUTE)
+	]]>
+	</update>
+	
+	<delete id="detailDAO.deleteDocdb1" parameterClass="map">
+		DELETE FROM D_DOCDB1 WHERE 
+		<iterate property="docno" conjunction="," close=")" open="(" prepend="DOCNO IN"> #docno[]# </iterate>
+	</delete>
+	<delete id="detailDAO.deleteDocdb2" parameterClass="map">
+		DELETE FROM D_DOCDB2 WHERE 
+		<iterate property="docno" conjunction="," close=")" open="(" prepend="DOCNO IN"> #docno[]# </iterate>
+	</delete>
+	
+	<select id="vaultDAO.getCountDocdb1" resultClass="Integer" parameterClass="VaultVo">
+	    SELECT COUNT(*) FROM D_DOCDB1 WHERE VAULTLNO LIKE #vaultlNo#||'%'	
+	</select>
+	
+	<select id="vaultDAO.getCountDocdb2" resultClass="Integer" parameterClass="VaultVo">
+	    SELECT COUNT(*) FROM D_DOCDB2 WHERE VAULTLNO LIKE #vaultlNo#||'%'	
+	</select>
+	
+	<select id="vaultDAO.getStoragePath" resultClass="string" parameterClass="string">
+	    SELECT STORAGEPATH FROM D_STORAGE WHERE STORAGENO = #storageno#
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+	
+	<!-- <resultMap id="doclgetJobs" class="egovframework.rte.vo.D_PmsVO">
+		<result property="jobno" column="JOBNO"/>
+	</resultMap> -->
+	
+	<resultMap id="userVO" class="egovframework.rte.vo.D_UserVO">
+		<result property="userno" column="USERNO"/>
+		<result property="username" column="USERNAME"/>
+		<result property="userposition" column="USERPOSITION"/>
+		<result property="userdeptname" column="USERDEPTNAME"/>
+		<result property="userjuminno" column="USERJUMINNO"/>
+		<result property="userpassword" column="USERPASSWORD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="usetype" column="USETYPE"/>
+		<result property="ip" column="IP"/>
+		<result property="phone" column="PHONE"/>
+		<result property="projectname" column="PROJECTNAME"/>
+		<result property="created" column="CREATED"/>
+		<result property="updated" column="UPDATED"/>
+	</resultMap>
+	
+	<select id="userDAO.loginCheck" resultMap="userVO" parameterClass="egovframework.rte.vo.D_UserVO">
+		SELECT * FROM D_USER WHERE USERNO = #userno# 
+	</select>
+	
+	<update id="userDAO.updPassword" parameterClass="egovframework.rte.vo.D_UserVO">
+		UPDATE D_USER SET USERPASSWORD = #userpassword# WHERE USERNO = #userno#
+	</update>
+</sqlMap>

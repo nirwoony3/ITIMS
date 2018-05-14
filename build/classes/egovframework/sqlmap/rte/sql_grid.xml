@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Grid">
+
+	<typeAlias alias="DocDBVo" type="egovframework.rte.vo.D_DocdbVO"/>
+	
+	<resultMap id="docDBVo" class="DocDBVo">
+				<result property="docno" column="DOCNO" />
+		<result property="doctype" column="DOCTYPE" />
+		<result property="docversion" column="DOCVERSION" nullValue="0"/>
+		<result property="docname" column="DOCNAME" />
+		<result property="docfilename" column="DOCFILENAME" />
+		<result property="docfiletype" column="DOCFILETYPE" />
+		<result property="docfilesize" column="DOCFILESIZE" nullValue="0"/>
+		<result property="docdesc" column="DOCDESC" />
+		<result property="docproadd" column="DOCPROADD" />
+		<result property="docstatus" column="DOCSTATUS" />
+		<result property="docappstatus" column="DOCAPPSTATUS" />
+		<result property="docsetno" column="DOCSETNO" />
+		<result property="doczipfilename" column="DOCZIPFILENAME" />
+		<result property="docgrade" column="DOCGRADE" />
+		<result property="docreturn" column="DOCRETURN" />
+		<result property="doccreated" column="DOCCREATED" />
+		<result property="doccreator" column="DOCCREATOR" />
+		<result property="doccreatorname" column="DOCCREATORNAME" />
+		<result property="doccreatordept" column="DOCCREATORDEPT" />
+		<result property="docupdated" column="DOCUPDATED" />
+		<result property="docupdator" column="DOCUPDATOR" />
+		<result property="docupdflag" column="DOCUPDFLAG" />
+		<result property="docapprid" column="DOCAPPRID" />
+		<result property="docanalyzekind" column="DOCANALYZEKIND" />
+		<result property="docanalyzed" column="DOCANALYZED" />
+		<result property="vaultlno" column="VAULTLNO" />
+		<result property="vldocno" column="VLDOCNO" />
+		<result property="docfacadded" column="DOCFACADDED" />
+		<result property="docopencnt" column="DOCOPENCNT" nullValue="0" />
+		<result property="docanalyzedcnt" column="DOCANALYZEDCNT" nullValue="0"/>
+	</resultMap>
+
+
+
+</sqlMap>

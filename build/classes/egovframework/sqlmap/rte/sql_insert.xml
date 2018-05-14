@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Insert">
+
+	<insert id ="insertDAO.insertApprproc" parameterClass="egovframework.rte.vo.D_ApprprocVO">
+	   INSERT INTO D_APPRPROC 
+		( DOCNO, APPRSTATUS, SEQNO, APPRUSERID, APPRJUMINNO
+		, APPRKIND, APPRTIME, APPRMEMO, APPRUSERNAME, APPRUSERPOSITION
+		, APPRUSERDEPTNAME, CREATED, CREATOR, CREATORNAME, CREATORDEPT
+		) VALUES (
+			#docno#, #apprstatus#, #seqno#, #appruserid#, #apprjuminno#
+		, #apprkind#, TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), #apprmemo#, #apprusername#, #appruserposition#
+		, #appruserdeptname#, TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), #creator#, #creatorname#, #creatordept#
+		)
+	</insert>
+
+	
+	
+	
+
+</sqlMap>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Detail">
+	
+	<typeAlias alias="WorkFlowVo" type="egovframework.rte.vo.D_WorkFlowVO"/>
+	
+	<resultMap id="workFlowVo" class="egovframework.rte.vo.D_WorkFlowVO">
+		<result property="wfname" column="WFNAME" />
+		<result property="wflevel" column="WFLEVEL" />
+		<result property="wfstate" column="WFSTATE" />
+		<result property="wfstateseq" column="WFSTATESEQ" nullValue="0"/>
+		<result property="wfdesc" column="WFDESC" />
+		<result property="wfprockind" column="WFPROCKIND" />
+		<result property="created" column="CREATED" />
+		<result property="creator" column="CREATOR" />
+		<result property="updated" column="UPDATED" />
+		<result property="updator" column="UPDATOR" />
+	</resultMap>
+	
+	<resultMap id="d_TableVo" class="egovframework.rte.vo.D_TableVO">
+		<result property="tabname" column="TABNAME"></result>
+		<result property="colname" column="COLNAME"></result>
+		<result property="seqno" column="SEQNO"></result>
+		<result property="coltype" column="COLTYPE"></result>
+		<result property="collen" column="COLLEN"></result>
+		<result property="colnotnull" column="COLNOTNULL"></result>
+		<result property="dispname" column="DISPNAME"></result>
+		<result property="colstyle" column="COLSTYLE"></result>
+		<result property="created" column="CREATED"></result>
+		<result property="creator" column="CREATOR"></result>
+		<result property="tabdesc" column="TABDESC"></result>
+		<result property="spaceno" column="SPACENO" nullValue="0"></result>
+		<result property="join" column="JOIN"></result>
+		<result property="imagename" column="IMAGENAME"></result>
+		<result property="label1" column="LABEL1"></result>
+		<result property="button1" column="BUTTON1"></result>
+		<result property="button2" column="BUTTON2"></result>
+		<result property="rowjoin" column="ROWJOIN"></result>
+		<result property="coljoin" column="COLJOIN"></result>
+	</resultMap>
+	
+	<resultMap id="d_ColItemVo" class="egovframework.rte.vo.D_ColItemVO">
+		<result property="tabName" column="TABNAME"></result>
+		<result property="colName" column="COLNAME"></result>
+		<result property="seqNo" column="SEQNO"></result>
+		<result property="colItem" column="COLITEM"></result>
+		<result property="colStyle" column="COLSTYLE"></result>
+		<result property="created" column="CREATED"></result>
+		<result property="creator" column="CREATOR"></result>
+	</resultMap>
+	
+	<resultMap id="docdbVo" class="egovframework.rte.vo.D_DocdbVO">
+		<result property="docno" column="DOCNO" />
+		<result property="doctype" column="DOCTYPE" />
+		<result property="docversion" column="DOCVERSION" nullValue="0"/>
+		<result property="docname" column="DOCNAME" />
+		<result property="docfilename" column="DOCFILENAME" />
+		<result property="docfiletype" column="DOCFILETYPE" />
+		<result property="docfilesize" column="DOCFILESIZE" nullValue="0"/>
+		<result property="docdesc" column="DOCDESC" />
+		<result property="docproadd" column="DOCPROADD" />
+		<result property="docstatus" column="DOCSTATUS" />
+		<result property="docappstatus" column="DOCAPPSTATUS" />
+		<result property="docsetno" column="DOCSETNO" />
+		<result property="doczipfilename" column="DOCZIPFILENAME" />
+		<result property="docgrade" column="DOCGRADE" />
+		<result property="docreturn" column="DOCRETURN" />
+		<result property="doccreated" column="DOCCREATED" />
+		<result property="doccreator" column="DOCCREATOR" />
+		<result property="doccreatorname" column="DOCCREATORNAME" />
+		<result property="doccreatordept" column="DOCCREATORDEPT" />
+		<result property="docupdated" column="DOCUPDATED" />
+		<result property="docupdator" column="DOCUPDATOR" />
+		<result property="docupdflag" column="DOCUPDFLAG" />
+		<result property="docapprid" column="DOCAPPRID" />
+		<result property="docanalyzekind" column="DOCANALYZEKIND" />
+		<result property="docanalyzed" column="DOCANALYZED" />
+		<result property="vaultlno" column="VAULTLNO" />
+		<result property="vldocno" column="VLDOCNO" />
+		<result property="docfacadded" column="DOCFACADDED" />
+		<result property="docopencnt" column="DOCOPENCNT" nullValue="0" />
+		<result property="docanalyzedcnt" column="DOCANALYZEDCNT" nullValue="0"/>
+	</resultMap>
+	
+	<resultMap id="docdbVo2" class="egovframework.rte.vo.D_DocdbVO">
+		<result property="docno" column="DOCNO" />
+		<result property="doctype" column="DOCTYPE" />
+		<result property="docversion" column="DOCVERSION" nullValue="0"/>
+		<result property="docname" column="DOCNAME" />
+		<result property="docfilename" column="DOCFILENAME" />
+		<result property="docfiletype" column="DOCFILETYPE" />
+		<result property="docfilesize" column="DOCFILESIZE" nullValue="0"/>
+		<result property="docdesc" column="DOCDESC" />
+		<result property="docproadd" column="DOCPROADD" />
+		<result property="docstatus" column="DOCSTATUS" />
+		<result property="docappstatus" column="DOCAPPSTATUS" />
+		<result property="docsetno" column="DOCSETNO" />
+		<result property="doczipfilename" column="DOCZIPFILENAME" />
+		<result property="docgrade" column="DOCGRADE" />
+		<result property="docreturn" column="DOCRETURN" />
+		<result property="doccreated" column="DOCCREATED" />
+		<result property="doccreator" column="DOCCREATOR" />
+		<result property="doccreatorname" column="DOCCREATORNAME" />
+		<result property="doccreatordept" column="DOCCREATORDEPT" />
+		<result property="docupdated" column="DOCUPDATED" />
+		<result property="docupdator" column="DOCUPDATOR" />
+		<result property="docupdflag" column="DOCUPDFLAG" />
+		<result property="docapprid" column="DOCAPPRID" />
+		<result property="docanalyzekind" column="DOCANALYZEKIND" />
+		<result property="docanalyzed" column="DOCANALYZED" />
+		<result property="vaultlno" column="VAULTLNO" />
+		<result property="vldocno" column="VLDOCNO" />
+		<result property="docanalyzedcnt" column="DOCANALYZEDCNT" nullValue="0"/>
+	</resultMap>
+	
+	<resultMap id="fileattachvo" class="egovframework.rte.vo.D_FileattachVO">
+		<result property="docno" column="DOCNO" />
+		<result property="filename" column="FILENAME" />
+		<result property="status" column="STATUS" />
+		<result property="filetype" column="FILETYPE" />
+		<result property="userfilename" column="USERFILENAME" />
+		<result property="rdlfilename" column="RDLFILENAME" />
+		<result property="created" column="CREATED" />
+		<result property="creator" column="CREATOR" />
+		<result property="creatorname" column="CREATORNAME" />
+		<result property="creatordept" column="CREATORDEPT" />
+		<result property="filedocno" column="FILEDOCNO" />
+		<result property="filedocmemo" column="FILEDOCMEMO" />
+		
+		<result property="filesize" column="FILESIZE" nullValue="0"/>
+		<result property="attcheckincnt" column="ATTCHECKINCNT" nullValue="0"/>
+		
+		<result property="addedvaultname" column="ADDEDVAULTNAME" />
+		<result property="addedvaultlname" column="ADDEDVAULTLNAME" />
+	</resultMap>
+
+	
+	    
+	
+	<select id="detailDAO.getTabsList" resultMap="workFlowVo" parameterClass="String">
+	SELECT * 
+		FROM 
+			D_WORKFLOW
+		WHERE
+			WFNAME = (SELECT WFNAME FROM D_WORKFLOWRELATION WHERE VAULTLNO= #vaultlno#)
+		AND
+			WFLEVEL = 1
+		ORDER BY
+			WFSTATESEQ ASC
+	</select>
+	
+	<select id="detailDAO.getDocapprstatus" resultMap="workFlowVo">
+		SELECT * 
+		FROM 
+			D_WORKFLOW
+		WHERE
+			WFNAME = '변경관리2'
+		AND
+			WFLEVEL = 1
+		ORDER BY
+			WFSTATESEQ ASC
+	</select>
+	
+	<select id="detailDAO.getColum" resultMap="d_TableVo" parameterClass="String">
+		SELECT *
+		FROM 
+			D_TABLE 
+		WHERE 
+			TABNAME = #value#
+		ORDER BY
+			SEQNO ASC
+	</select>
+	
+	<select id="detailDAO.getColItem" resultMap="d_ColItemVo" parameterClass="String">
+		SELECT * 
+		FROM 
+			D_COLITEM 
+		WHERE
+			TABNAME = #value#
+	</select>
+	
+<!-- 	<select id="detailDAO.getDocno1" resultClass="String" > -->
+<!-- 		SELECT 'D'||TO_CHAR(SYSDATE,'YY')||LPAD(MNO+1,12,'0') DOCNO FROM  -->
+<!--        (SELECT TO_NUMBER(NVL(MAX(SUBSTR(DOCNO,4,12)),0)) MNO FROM D_DOCDB1 -->
+<!--          WHERE DOCNO LIKE 'D'||TO_CHAR(SYSDATE,'YY')||'%') -->
+<!-- 	</select> -->
+	
+	<select id="detailDAO.getDocno1" resultClass="String" >
+		SELECT 'D'||TO_CHAR(SYSDATE,'YYMM')||LPAD(DOCNOSEQ.NEXTVAL,10,'0') DOCNO FROM DUAL
+	</select>
+	
+	<select id="detailDAO.getDocno2" resultClass="String" >
+		SELECT 'D'||TO_CHAR(SYSDATE,'YYMM')||LPAD(DOCNOSEQ.NEXTVAL,10,'0') DOCNO FROM DUAL
+	</select>
+	
+	<select id="detailDAO.getDocdb1" resultMap="docdbVo" parameterClass="docdbVo">
+		SELECT * FROM D_DOCDB1 WHERE DOCNO = #docno#
+	</select>
+	
+	<select id="detailDAO.getDocdb2" resultMap="docdbVo2" parameterClass="docdbVo">
+		SELECT * FROM D_DOCDB2 WHERE DOCNO = #docno#
+	</select>
+
+	<insert id ="detailDAO.insertDocdb1" parameterClass="docdbVo">
+	    INSERT INTO
+   		 	D_DOCDB1 (DOCNO , DOCTYPE , DOCVERSION , DOCNAME , DOCFILENAME , 
+        DOCFILETYPE , DOCFILESIZE , DOCDESC , DOCSTATUS , DOCAPPSTATUS, 
+        DOCSETNO, DOCZIPFILENAME, DOCGRADE, DOCCREATED , DOCCREATOR ,
+        DOCCREATORNAME ,DOCCREATORDEPT ,DOCANALYZEKIND ,VAULTLNO , VLDOCNO 
+        )
+   		VALUES(#docno#,#doctype#,#docversion#,#docname#,#docfilename#,
+      #docfiletype#,#docfilesize#,#docdesc#,#docstatus#,#docappstatus#,
+      #docsetno#,#doczipfilename#,#docgrade#,TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'),#doccreator#,
+      #doccreatorname#,#doccreatordept#,#docanalyzekind#,#vaultlno#,#vldocno#)
+	</insert>
+	
+<!-- 	<update id="detailDAO.updateDocdb" parameterClass="docdbVo"> -->
+<!-- 	    UPDATE  -->
+<!-- 	    D_DOCDB1 SET DOCNO = #docno#, DOCTYPE = #doctype# , DOCVERSION = #docversion# , DOCNAME = #docname#, DOCFILENAME = #docfilename#,  -->
+<!--         DOCFILETYPE = #docfiletype#, DOCFILESIZE = #docfilesize#, DOCDESC = #docdesc# , DOCSTATUS = #docstatus#, DOCAPPSTATUS = #docappstatus#,  -->
+<!--         DOCSETNO = #docsetno#, DOCZIPFILENAME = #doczipfilename#, DOCGRADE = #docgrade#, DOCUPDATED = TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), DOCUPDATOR = #docupdator#, -->
+<!--         DOCCREATORNAME = #doccreatorname#, DOCCREATORDEPT = #doccreatordept#, DOCANALYZEKIND = #docanalyzekind#,  VLDOCNO = #vldocno# -->
+<!--         WHERE DOCNO = #docno# AND VAULTLNO = #vaultlno# -->
+<!-- 	</update> -->
+
+	
+	<!-- 개별 수정 -->
+    <update id="detailDAO.updateDocdb" parameterClass="docdbVo">
+        	UPDATE D_DOCDB1 
+        <dynamic prepend="SET">
+	        <isNotEmpty prepend="," property="doctype">
+	        DOCTYPE = #doctype#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docversion">
+	        DOCVERSION = #docversion#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docname">
+	       DOCNAME = #docname#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfilename">
+	        DOCFILENAME = #docfilename#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfiletype">
+	        DOCFILETYPE = #docfiletype#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfilesize">
+	        DOCFILESIZE = #docfilesize#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docdesc">
+	        DOCDESC = #docdesc#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docstatus">
+	        DOCSTATUS = #docstatus#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docappstatus">
+	        DOCAPPSTATUS = #docappstatus#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="doczipfilename">
+	        DOCZIPFILENAME = #doczipfilename#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docgrade">
+	        DOCGRADE = #docgrade#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docanalyzekind">
+	        DOCANALYZEKIND = #docanalyzekind#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="vldocno">
+	        VLDOCNO = #vldocno#
+	        </isNotEmpty>
+	        , DOCUPDATED = TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), DOCUPDATOR = #docupdator#,
+	        DOCCREATORNAME = #doccreatorname#, DOCCREATORDEPT = #doccreatordept#
+	        WHERE DOCNO = #docno# AND VAULTLNO = #vaultlno#
+        </dynamic>
+    </update>
+	
+    
+    <!-- 개별 수정 -->
+    <update id="detailDAO.updateDocdb2" parameterClass="docdbVo">
+        	UPDATE D_DOCDB2 
+        <dynamic prepend="SET">
+	        <isNotEmpty prepend="," property="doctype">
+	        DOCTYPE = #doctype#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docversion">
+	        DOCVERSION = #docversion#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docname">
+	       DOCNAME = #docname#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfilename">
+	        DOCFILENAME = #docfilename#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfiletype">
+	        DOCFILETYPE = #docfiletype#
+	        </isNotEmpty>
+	         <isNotEmpty prepend="," property="docfilesize">
+	        DOCFILESIZE = #docfilesize#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docdesc">
+	        DOCDESC = #docdesc#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docstatus">
+	        DOCSTATUS = #docstatus#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="docappstatus">
+	        DOCAPPSTATUS = #docappstatus#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="doczipfilename">
+	        DOCZIPFILENAME = #doczipfilename#
+	        </isNotEmpty>
+	        , DOCGRADE = #docgrade#, DOCUPDATED = TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), DOCUPDATOR = #docupdator#,
+	        DOCCREATORNAME = #doccreatorname#, DOCCREATORDEPT = #doccreatordept#, DOCANALYZEKIND = #docanalyzekind#,  VLDOCNO = #vldocno#
+	        WHERE DOCNO = #docno# AND VAULTLNO = #vaultlno#
+        </dynamic>
+    </update>
+	
+	<insert id ="detailDAO.insertDocdb2" parameterClass="docdbVo">
+	    INSERT INTO
+   		 	D_DOCDB2 (DOCNO , DOCTYPE , DOCVERSION , DOCNAME , DOCFILENAME , 
+        DOCFILETYPE , DOCFILESIZE , DOCDESC , DOCSTATUS , DOCAPPSTATUS, 
+        DOCSETNO, DOCZIPFILENAME, DOCGRADE, DOCCREATED , DOCCREATOR ,
+        DOCCREATORNAME ,DOCCREATORDEPT ,DOCANALYZEKIND ,VAULTLNO , VLDOCNO 
+        )
+   		VALUES(#docno#,#doctype#,#docversion#,#docname#,#docfilename#,
+      #docfiletype#,#docfilesize#,#docdesc#,#docstatus#,#docappstatus#,
+      #docsetno#,#doczipfilename#,#docgrade#,TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'),#doccreator#,
+      #doccreatorname#,#doccreatordept#,#docanalyzekind#,#vaultlno#,#vldocno#)
+	</insert>
+	<insert id ="detailDAO.insertFileAttach" parameterClass="egovframework.rte.vo.D_FileattachVO">
+		INSERT INTO
+			D_FILEATTACH(DOCNO, FILENAME, STATUS, FILETYPE, USERFILENAME, 
+			CREATED, CREATOR, CREATORNAME, CREATORDEPT, FILEDOCNO,
+			 FILEDOCMEMO)
+			VALUES(#docno#, #filename#, #status#, #filetype#, #userfilename#, 
+			TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), #creator#, #creatorname#, #creatordept#, #filedocno#, 
+			#filedocmemo#)
+	</insert>
+	
+	    
+	<delete id ="detailDAO.deleteFileAttach" parameterClass="egovframework.rte.vo.D_FileattachVO">
+	    DELETE FROM D_FILEATTACH WHERE DOCNO = #docno# AND FILENAME = #filename#
+	</delete>
+	
+	<insert id ="detailDAO.insertHistory" parameterClass="egovframework.rte.vo.D_HistoryVO">
+		INSERT INTO
+		D_HISTORY(DOCNO, DOCVERSION, HISTCONTENT, HISTKIND, PROJECTCODE, 
+		PROJECTTYPE, PROJECTNAME, CREATED, CREATOR)
+		VALUES(
+			#docno#, #docversion#, #histcontent#, #histkind#, #projectcode#, 
+			#projecttype#, #projectname#, TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), #creator#
+		)
+	</insert>
+	
+	<update id="detailDAO.updateHistory" parameterClass="egovframework.rte.vo.D_HistoryVO">
+	    UPDATE D_HISTORY SET HISTCONTENT = #histcontent#, HISTKIND = #histkind#,
+	    	PROJECTCODE = #projectcode#, PROJECTTYPE= #projecttype#, PROJECTNAME= #projectname#,
+	    	CREATED = TO_CHAR(SYSTIMESTAMP,'yyyymmdd:hh24miss'), CREATOR = #creator#
+	    	WHERE DOCNO = #docno# AND DOCVERSION = #docversion#
+	</update>
+	
+<!-- 	<insert id ="detailDAO.insertD_SUBDB100" parameterClass="egovframework.rte.vo.D_Subdb100VO"> -->
+<!-- 		INSERT INTO  -->
+<!-- 			D_SUBDB100( -->
+<!--       DOCNO,VAULTLNO,AAA,BBB,CCC, -->
+<!--       ITEM_NO,PROJECT,ITEMNO,LINENO,TAGNO, -->
+<!--       ZZZ1,LINE_NO,TAG_NO,EEEE, PLANTCODE, -->
+<!--       DOCNUM_OLD,DOCNUM_NEW,COMMENTS,DOCNUMOLD,DOCNUMNEW, -->
+<!--       DELTA1,DELTA2,NOUSEFACNO1,NOUSEFACNO2,DATE_S1, -->
+<!--       INOUTNO,PLANT,SECTION,MEMO,MEMO2, -->
+<!--       FACNO) -->
+<!-- 		VALUES(#docno#,#vaultlno#,#aaa#,#bbb#,#ccc#, -->
+<!-- 		      #item_no#,#project#,#itemno#,#lineno#,#tagno#, -->
+<!-- 		      #zzz1#,#line_no#,#tag_no#,#eeee#,#plantcode#, -->
+<!-- 		      #docnum_old#,#docnum_new#,#comments#,#docnumold#,#docnumnew#, -->
+<!-- 		      #delta1#,#delta2#,#nousefacno1#,#nousefacno2#,#date_s1#, -->
+<!-- 		      #inoutno#,#plant#,#section#,#memo#,#memo2#, -->
+<!-- 		      #facno#)  -->
+<!-- 	</insert> -->
+	
+<!-- 	<insert id ="detailDAO.insertD_SUBDBE100" parameterClass="egovframework.rte.vo.D_Subdbe100VO"> -->
+<!-- 		INSERT INTO  -->
+<!-- 			D_SUBDBE100(       -->
+<!--       DOCNO, VAULTLNO, AAA1, BBB1, CCC1, -->
+<!--       EWR_GRADE, EWR_DGRADE, GGGG, WOPLANT, EQUIP_NO, -->
+<!--       SSSSS, DATE_BUY, NOUSEFACNO1, NOUSEFACNO2, PROSAFETYI1, -->
+<!--       PROSAFETYI2, OPRCHECKLST, E100_NUM) -->
+<!-- 		VALUES( -->
+<!-- 		#docno#, #vaultlno#, #aaa1#, #bbb1#, #ccc1#, -->
+<!--       #ewr_grade#,#ewr_dgrade#,#gggg#,#woplant#,#equip_no#, -->
+<!--       #sssss#,#date_buy#,#nousefacno1#,#nousefacno2#,#prosafetyi1#, -->
+<!--       #prosafetyi2#,#oprchecklst#,#e100_num# -->
+<!-- 		) 	 -->
+<!-- 	</insert> -->
+	
+<!-- 	<insert id ="detailDAO.insertD_SUBDBE200" parameterClass="egovframework.rte.vo.D_Subdbe200VO"> -->
+<!-- 		INSERT INTO  -->
+<!-- 			D_SUBDBE200(       -->
+<!-- 	     DOCNO,VAULTLNO,AAA2,BBB2,CCC2, -->
+<!-- 	     DDD,EEE,FFF,HHH,III) -->
+<!-- 		VALUES( -->
+<!-- 			#docno#,#vaultlno#,#aaa2#,#bbb2#,#ccc2#, -->
+<!-- 	     #ddd#,#eee#,#fff#,#hhh#,#iii# -->
+<!-- 	      )  -->
+<!-- 	</insert> -->
+	
+<!-- 	<insert id ="detailDAO.insertD_SUBDBE300" parameterClass="egovframework.rte.vo.D_Subdbe300VO"> -->
+<!-- 	 INSERT INTO  -->
+<!-- 			D_SUBDBE300(       -->
+<!--      DOCNO,VAULTLNO,AAA3,BBB3,CCC3, -->
+<!--      DDD3) -->
+<!-- 	VALUES( -->
+<!-- 	#docno#,#vaultlno#,#aaa3#,#bbb3#,#ccc3#, -->
+<!--      #ddd3# -->
+<!-- 	 ) -->
+<!-- 	</insert> -->
+	
+<!-- 	<insert id ="detailDAO.insertD_SUBDBE400" parameterClass="egovframework.rte.vo.D_Subdbe400VO"> -->
+<!-- 	 INSERT INTO  -->
+<!-- 			D_SUBDBE400(       -->
+<!--      DOCNO,VAULTLNO,AAA1,BBB1,CCC1, -->
+<!--      DDD1,EEE1,FFF1) -->
+<!-- 	VALUES( -->
+<!-- 		#docno#,#vaultlno#,#aaa1#,#bbb1#,#ccc1#, -->
+<!--      #ddd1#,#eee1#,#fff1# -->
+<!-- 	      ) -->
+<!-- 	</insert> -->
+	
+<!-- 	<select id = "detailDAO.getD_SUBDB100" resultMap="subdb100vo" parameterClass="egovframework.rte.vo.D_Subdb100VO"> -->
+<!-- 	    SELECT * FROM D_SUBDB100 WHERE DOCNO = #docno# AND VAULTLNO = #vaultlno# -->
+<!-- 	</select> -->
+	
+	
+</sqlMap>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Select">
+
+	
+	<resultMap id="uservo" class="egovframework.rte.vo.D_UserVO">
+		<result property="userno" column="userno" />
+		<result property="username" column="username" />
+		<result property="userposition" column="userposition" />
+		<result property="userdeptname" column="userdeptname" />
+		<result property="userjuminno" column="userjuminno" />
+		<result property="userpassword" column="userpassword" />
+		<result property="email" column="email" />
+		<result property="usetype" column="usetype" />
+		<result property="ip" column="ip" />
+		<result property="phone" column="phone" />
+		<result property="projectname" column="projectname" />
+		<result property="created" column="created" />
+		<result property="updated" column="updated" />
+	</resultMap>
+
+	
+	<resultMap id="fileattachvo" class="egovframework.rte.vo.D_FileattachVO">
+		<result property="docno" column="DOCNO" />
+		<result property="filename" column="FILENAME" />
+		<result property="status" column="STATUS" />
+		<result property="filetype" column="FILETYPE" />
+		<result property="userfilename" column="USERFILENAME" />
+		<result property="rdlfilename" column="RDLFILENAME" />
+		<result property="created" column="CREATED" />
+		<result property="creator" column="CREATOR" />
+		<result property="creatorname" column="CREATORNAME" />
+		<result property="creatordept" column="CREATORDEPT" />
+		<result property="filedocno" column="FILEDOCNO" />
+		<result property="filedocmemo" column="FILEDOCMEMO" />
+		<result property="filesize" column="FILESIZE" nullValue="0"/>
+		<result property="attcheckincnt" column="ATTCHECKINCNT" nullValue="0"/>
+		<result property="addedvaultname" column="ADDEDVAULTNAME" />
+		<result property="addedvaultlname" column="ADDEDVAULTLNAME" />
+	</resultMap>
+	
+	<resultMap id="workflowvo" class="egovframework.rte.vo.D_WorkFlowVO">
+		<result property="wfname" column="WFNAME" />
+		<result property="wflevel" column="WFLEVEL" />
+		<result property="wfstate" column="WFSTATE" />
+		<result property="wfstateseq" column="WFSTATESEQ" nullValue="0"/>
+		<result property="wfdesc" column="WFDESC" />
+		<result property="wfprockind" column="WFPROCKIND" />
+		<result property="created" column="CREATED" />
+		<result property="creator" column="CREATOR" />
+		<result property="updated" column="UPDATED" />
+		<result property="updator" column="UPDATOR" />
+	</resultMap>
+	
+	<resultMap id="workflowchghistvo" class="egovframework.rte.vo.D_WorkflowchghistVO">
+		<result property="docno" column="DOCNO" />
+		<result property="created" column="CREATED" />
+		<result property="wfstate" column="WFSTATE" />
+		<result property="wfstateold" column="WFSTATEOLD" />
+		<result property="changedesc" column="CHANGEDESC" />
+		<result property="creator" column="CREATOR" />
+		<result property="creatorname" column="CREATORNAME" />
+		<result property="creatordeptname" column="CREATORDEPTNAME" />
+		<result property="wfscomment" column="WFSCOMMENT" />
+	</resultMap>
+	
+	<resultMap id="pgmvo" class="egovframework.rte.vo.D_pgmVO">
+		<result property="pgmuserno" column="PGMUSERNO" />
+		<result property="pgmextention" column="PGMEXTENTION" />
+		<result property="pgmaccesstype" column="PGMACCESSTYPE" />
+		<result property="pgmname" column="PGMNAME" />
+		<result property="pgmdesc" column="PGMDESC" />
+		<result property="pgmpath" column="PGMPATH" />
+		<result property="pgmoption" column="PGMOPTION" />
+		<result property="pgmicon" column="PGMICON" />
+	</resultMap>
+	
+	
+	
+	<select id="selectDAO.getFileAttach" resultMap ="fileattachvo" parameterClass="egovframework.rte.vo.D_FileattachVO">
+	   SELECT * FROM d_fileattach WHERE DOCNO = #docno#
+	</select>
+	
+	<select id="selectDAO.getUserList" resultMap ="uservo" parameterClass="egovframework.rte.vo.D_UserVO">
+	   SELECT * FROM D_USER WHERE USERNAME LIKE '%'||#username#||'%'
+	</select>
+	
+	<select id="selectDAO.getWorkflowHisList" resultMap ="workflowchghistvo" parameterClass="egovframework.rte.vo.D_WorkflowchghistVO">
+	  SELECT CREATED,WFSTATEOLD,WFSTATE,CREATORNAME,WFSCOMMENT
+		  FROM D_WORKFLOWCHGHIST 
+		 WHERE DOCNO= #docno#
+		  ORDER BY CREATED DESC
+	</select>
+	
+	<select id="selectDAO.getPgmList" resultMap="pgmvo" parameterClass="egovframework.rte.vo.D_pgmVO">
+	  SELECT * FROM D_PGM ORDER BY PGMUSERNO, PGMEXTENTION, PGMACCESSTYPE
+	</select>
+	
+	
+	
+
+</sqlMap>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<Context reloadable="true">
+  <!-- 
+    maxActive: Maximum number of dB connections in pool. Set to -1 for no limit.
+    maxIdle: Maximum number of idle dB connections to retain in pool. Set to -1 for no limit.
+    maxWait: Maximum milliseconds to wait for a dB connection to become available
+             Set to -1 to wait indefinitely.
+  -->
+  <Resource name="jdbc/D_VAULTLIST" auth="Container" type="javax.sql.DataSource"
+     maxActive="100" maxIdle="30" maxWait="10000" removeAbandoned="true"
+     username="pwmadmin" password="pwmmgr" driverClassName="oracle.jdbc.driver.OracleDriver"
+     url="jdbc:oracle:thin:@121.126.112.37:1521:orcl" />
+</Context>
